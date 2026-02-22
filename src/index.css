@@ -1,0 +1,324 @@
+/* ===== all the main styles for our metro booking app ===== */
+
+/* ===== dark mode colors (this is the default) ===== */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #070b14;
+  --bg-secondary: #0d1321;
+  --bg-card: rgba(15, 23, 42, 0.75);
+  --bg-card-hover: rgba(20, 30, 55, 0.85);
+  --bg-glass: rgba(15, 23, 42, 0.6);
+  --bg-glass-border: rgba(99, 130, 255, 0.12);
+  --bg-input: rgba(15, 23, 42, 0.6);
+
+  --text-primary: #f0f4ff;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-accent: #818cf8;
+
+  --accent-blue: #6366f1;
+  --accent-blue-glow: rgba(99, 102, 241, 0.35);
+
+  --border-subtle: rgba(148, 163, 184, 0.1);
+  --border-glass: rgba(99, 130, 255, 0.15);
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+
+  --header-bg: rgba(7, 11, 20, 0.8);
+  --nav-bg: rgba(30, 41, 59, 0.5);
+  --nav-border: rgba(51, 65, 85, 0.5);
+  --dropdown-bg: rgba(15, 23, 42, 0.95);
+  --station-fill: #1e293b;
+  --station-label: rgba(148, 163, 184, 0.7);
+  --map-grid-dot: rgba(99, 130, 255, 0.08);
+  --map-bg-gradient1: rgba(99, 102, 241, 0.06);
+  --map-bg-gradient2: rgba(34, 211, 238, 0.05);
+  --map-bg-base: rgba(10, 15, 30, 0.95);
+  --map-grid-line: rgba(99, 130, 255, 0.04);
+  --skeleton-from: rgba(30, 41, 59, 0.5);
+  --skeleton-mid: rgba(51, 65, 85, 0.5);
+  --scrollbar-thumb: rgba(148, 163, 184, 0.2);
+}
+
+/* ===== light mode colors ===== */
+[data-theme="light"] {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #e2e8f0;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-hover: rgba(255, 255, 255, 0.96);
+  --bg-glass: rgba(255, 255, 255, 0.75);
+  --bg-glass-border: rgba(99, 130, 255, 0.18);
+  --bg-input: rgba(241, 245, 249, 0.9);
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-accent: #4f46e5;
+
+  --accent-blue: #4f46e5;
+  --accent-blue-glow: rgba(79, 70, 229, 0.18);
+
+  --border-subtle: rgba(100, 116, 139, 0.2);
+  --border-glass: rgba(99, 130, 255, 0.22);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.08);
+
+  --header-bg: rgba(255, 255, 255, 0.9);
+  --header-border: rgba(100, 116, 139, 0.15);
+  --nav-bg: rgba(241, 245, 249, 0.9);
+  --nav-border: rgba(203, 213, 225, 0.7);
+  --dropdown-bg: rgba(255, 255, 255, 0.98);
+  --dropdown-border: rgba(100, 116, 139, 0.15);
+  --station-fill: #ffffff;
+  --station-label: rgba(30, 41, 59, 0.85);
+  --map-grid-dot: rgba(99, 102, 241, 0.06);
+  --map-bg-gradient1: rgba(99, 102, 241, 0.04);
+  --map-bg-gradient2: rgba(34, 211, 238, 0.03);
+  --map-bg-base: rgba(248, 250, 252, 0.98);
+  --map-grid-line: rgba(99, 130, 255, 0.06);
+  --skeleton-from: rgba(226, 232, 240, 0.6);
+  --skeleton-mid: rgba(203, 213, 225, 0.6);
+  --scrollbar-thumb: rgba(100, 116, 139, 0.25);
+}
+
+/* ===== basic styles for the whole page ===== */
+:root {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+/* ===== the frosted glass card look we use everywhere ===== */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card-hover:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(99, 130, 255, 0.25);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ===== fade and slide animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-blue-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 20px 4px var(--accent-blue-glow);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.4s ease-out both;
+}
+
+/* ===== how our text inputs look ===== */
+.metro-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.metro-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px var(--accent-blue-glow);
+}
+
+.metro-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ===== our custom button designs ===== */
+.btn-primary {
+  width: 100%;
+  padding: 14px 24px;
+  background: #6366f1;
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #5558e6;
+  box-shadow: 0 4px 20px var(--accent-blue-glow);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  padding: 10px 20px;
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-blue);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.btn-secondary:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.btn-success {
+  width: 100%;
+  padding: 14px 24px;
+  background: #059669;
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.btn-success:hover {
+  box-shadow: 0 4px 20px rgba(52, 211, 153, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ===== the loading shimmer effect ===== */
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-from) 25%, var(--skeleton-mid) 50%, var(--skeleton-from) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ===== background style for the metro map area ===== */
+.metro-map-bg {
+  background:
+    radial-gradient(circle at 15% 25%, var(--map-bg-gradient1) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, var(--map-bg-gradient2) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, var(--map-bg-gradient1) 0%, transparent 60%),
+    linear-gradient(var(--map-bg-base), var(--map-bg-base)),
+    repeating-linear-gradient(0deg, transparent, transparent 49px, var(--map-grid-line) 49px, var(--map-grid-line) 50px),
+    repeating-linear-gradient(90deg, transparent, transparent 49px, var(--map-grid-line) 49px, var(--map-grid-line) 50px);
+}

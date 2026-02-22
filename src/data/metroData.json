@@ -1,0 +1,301 @@
+{
+  "stations": [
+    {
+      "id": "s1",
+      "name": "Rajiv Chowk",
+      "coordinates": {
+        "x": 500,
+        "y": 350
+      },
+      "facilities": [
+        "accessibility",
+        "parking",
+        "exits"
+      ]
+    },
+    {
+      "id": "s2",
+      "name": "Chandni Chowk",
+      "coordinates": {
+        "x": 500,
+        "y": 200
+      },
+      "facilities": [
+        "exits"
+      ]
+    },
+    {
+      "id": "s3",
+      "name": "New Delhi",
+      "coordinates": {
+        "x": 500,
+        "y": 500
+      },
+      "facilities": [
+        "accessibility",
+        "parking",
+        "exits"
+      ]
+    },
+    {
+      "id": "s4",
+      "name": "Dwarka Sec-21",
+      "coordinates": {
+        "x": 100,
+        "y": 350
+      },
+      "facilities": [
+        "parking"
+      ]
+    },
+    {
+      "id": "s5",
+      "name": "Janakpuri West",
+      "coordinates": {
+        "x": 230,
+        "y": 350
+      },
+      "facilities": [
+        "exits"
+      ]
+    },
+    {
+      "id": "s6",
+      "name": "Rajouri Garden",
+      "coordinates": {
+        "x": 360,
+        "y": 350
+      },
+      "facilities": []
+    },
+    {
+      "id": "s7",
+      "name": "Vaishali",
+      "coordinates": {
+        "x": 900,
+        "y": 350
+      },
+      "facilities": [
+        "parking"
+      ]
+    },
+    {
+      "id": "s8",
+      "name": "Anand Vihar",
+      "coordinates": {
+        "x": 770,
+        "y": 350
+      },
+      "facilities": [
+        "exits"
+      ]
+    },
+    {
+      "id": "s9",
+      "name": "Pragati Maidan",
+      "coordinates": {
+        "x": 640,
+        "y": 350
+      },
+      "facilities": [
+        "accessibility"
+      ]
+    },
+    {
+      "id": "s10",
+      "name": "Kashmere Gate",
+      "coordinates": {
+        "x": 500,
+        "y": 80
+      },
+      "facilities": [
+        "accessibility",
+        "exits"
+      ]
+    },
+    {
+      "id": "s11",
+      "name": "HUDA City Centre",
+      "coordinates": {
+        "x": 500,
+        "y": 650
+      },
+      "facilities": [
+        "parking",
+        "exits"
+      ]
+    },
+    {
+      "id": "s12",
+      "name": "Hauz Khas",
+      "coordinates": {
+        "x": 360,
+        "y": 500
+      },
+      "facilities": [
+        "exits"
+      ]
+    },
+    {
+      "id": "s13",
+      "name": "Saket",
+      "coordinates": {
+        "x": 360,
+        "y": 650
+      },
+      "facilities": [
+        "parking"
+      ]
+    },
+    {
+      "id": "s14",
+      "name": "Botanical Garden",
+      "coordinates": {
+        "x": 640,
+        "y": 500
+      },
+      "facilities": [
+        "accessibility"
+      ]
+    },
+    {
+      "id": "s15",
+      "name": "Noida Sec-18",
+      "coordinates": {
+        "x": 770,
+        "y": 500
+      },
+      "facilities": []
+    },
+    {
+      "id": "s16",
+      "name": "Noida Electronic City",
+      "coordinates": {
+        "x": 900,
+        "y": 500
+      },
+      "facilities": [
+        "parking"
+      ]
+    },
+    {
+      "id": "s17",
+      "name": "Mandi House",
+      "coordinates": {
+        "x": 640,
+        "y": 200
+      },
+      "facilities": [
+        "exits"
+      ]
+    },
+    {
+      "id": "s18",
+      "name": "ITO",
+      "coordinates": {
+        "x": 640,
+        "y": 80
+      },
+      "facilities": []
+    },
+    {
+      "id": "s19",
+      "name": "Lajpat Nagar",
+      "coordinates": {
+        "x": 640,
+        "y": 650
+      },
+      "facilities": [
+        "exits"
+      ]
+    },
+    {
+      "id": "s20",
+      "name": "Nehru Place",
+      "coordinates": {
+        "x": 770,
+        "y": 650
+      },
+      "facilities": [
+        "parking"
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "id": "l1",
+      "name": "Blue Line",
+      "color": "#3b82f6",
+      "stations": [
+        "s4",
+        "s5",
+        "s6",
+        "s1",
+        "s9",
+        "s8",
+        "s7"
+      ]
+    },
+    {
+      "id": "l2",
+      "name": "Yellow Line",
+      "color": "#eab308",
+      "stations": [
+        "s10",
+        "s2",
+        "s1",
+        "s3",
+        "s11"
+      ]
+    },
+    {
+      "id": "l3",
+      "name": "Violet Line",
+      "color": "#8b5cf6",
+      "stations": [
+        "s10",
+        "s17",
+        "s18"
+      ]
+    },
+    {
+      "id": "l4",
+      "name": "Green Line",
+      "color": "#22c55e",
+      "stations": [
+        "s12",
+        "s3",
+        "s14",
+        "s15",
+        "s16"
+      ]
+    },
+    {
+      "id": "l5",
+      "name": "Pink Line",
+      "color": "#ec4899",
+      "stations": [
+        "s13",
+        "s12",
+        "s1",
+        "s17",
+        "s9",
+        "s14",
+        "s19",
+        "s20"
+      ]
+    },
+    {
+      "id": "l6",
+      "name": "Magenta Line",
+      "color": "#d946ef",
+      "stations": [
+        "s13",
+        "s11",
+        "s3",
+        "s19",
+        "s20"
+      ]
+    }
+  ]
+}
