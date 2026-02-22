@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { useAdminStore } from '../../store/useAdminStore';
 import { useBookingStore } from '../../store/useBookingStore';
 import { useThemeStore } from '../../store/useThemeStore';
-import { Dot, Accessibility, CarFront, LogOut, X, ZoomIn, ZoomOut, Maximize2, MapPin, Layers, ChevronDown } from 'lucide-react';
+import { Dot, Accessibility, CarFront, LogOut, X, ZoomIn, ZoomOut, Maximize2, MapPin, Layers, ChevronDown, Search } from 'lucide-react';
 import { cn } from '../molecules/StationSearch';
 
 export const NetworkMap = () => {
@@ -14,6 +14,36 @@ export const NetworkMap = () => {
   const [selectedStation, setSelectedStation] = useState(null);
   const [hoveredStation, setHoveredStation] = useState(null);
   const [legendOpen, setLegendOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchFocused, setSearchFocused] = useState(false);
+  const transformRef = useRef(null);
+
+  const filteredStations = useMemo(() => {
+    if (!searchQuery.trim()) return [];
+    const q = searchQuery.toLowerCase();
+    return stations.filter(s => s.name.toLowerCase().includes(q)).slice(0, 6);
+  }, [searchQuery, stations]);
+
+  const zoomToStation = (station) => {
+    setSearchQuery('');
+    setSearchFocused(false);
+    setSelectedStation(station);
+    if (transformRef.current) {
+      const scale = 2.5;
+      const wrapperEl = transformRef.current.instance.wrapperComponent;
+      if (!wrapperEl) return;
+      const rect = wrapperEl.getBoundingClientRect();
+      const svgWidth = 1000, svgHeight = 750;
+      const contentEl = transformRef.current.instance.contentComponent;
+      const contentRect = contentEl?.getBoundingClientRect();
+      const currentScale = contentRect ? contentRect.width / svgWidth : 1;
+      const stationXPx = (station.coordinates.x / svgWidth) * rect.width * scale;
+      const stationYPx = (station.coordinates.y / svgHeight) * rect.height * scale;
+      const x = rect.width / 2 - stationXPx;
+      const y = rect.height / 2 - stationYPx;
+      transformRef.current.setTransform(x, y, scale, 300, 'easeOut');
+    }
+  };
 
   // figure out which parts of the map should be highlighted when a route is selected
   const routeEdges = useMemo(() => {
@@ -68,6 +98,40 @@ export const NetworkMap = () => {
         <span className="text-sm font-bold" style={{ color: 'var(--text-primary)', opacity: 0.8 }}>Network Map</span>
       </div>
 
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 w-56 sm:w-64">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style={{ color: 'var(--text-muted)' }} />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setSearchFocused(true)}
+            onBlur={() => setTimeout(() => setSearchFocused(false), 200)}
+            placeholder="Search station..."
+            className="w-full pl-9 pr-3 py-2 rounded-xl text-xs font-medium border outline-none transition-all"
+            style={{ background: 'var(--bg-card)', borderColor: 'var(--border-glass)', color: 'var(--text-primary)', backdropFilter: 'blur(12px)' }}
+          />
+        </div>
+        {searchFocused && filteredStations.length > 0 && (
+          <div className="mt-1 rounded-xl border overflow-hidden shadow-lg" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-glass)', backdropFilter: 'blur(12px)' }}>
+            {filteredStations.map(station => (
+              <button
+                key={station.id}
+                onMouseDown={() => zoomToStation(station)}
+                className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold transition-all text-left hover:bg-green-500/10"
+                style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}
+              >
+                <MapPin className="w-3 h-3 text-green-400 shrink-0" />
+                {station.name}
+                <span className="ml-auto text-[10px] font-normal" style={{ color: 'var(--text-muted)' }}>
+                  {getStationLines(station.id).map(l => l.name).join(', ')}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       {/* clickable button that shows/hides the line legend */}
       <div className="absolute bottom-3 left-3 z-10">
         <button
@@ -98,7 +162,7 @@ export const NetworkMap = () => {
         )}
       </div>
 
-      <TransformWrapper initialScale={1} minScale={0.5} maxScale={4} centerOnInit>
+      <TransformWrapper ref={transformRef} initialScale={1} minScale={0.5} maxScale={4} centerOnInit>
         {({ zoomIn, zoomOut, resetTransform }) => (
           <>
             <div className="absolute top-4 right-4 z-10 flex flex-col gap-1">
