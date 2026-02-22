@@ -14,10 +14,10 @@
   --text-primary: #f0f4ff;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --text-accent: #818cf8;
+  --text-accent: #4ade80;
 
-  --accent-blue: #6366f1;
-  --accent-blue-glow: rgba(99, 102, 241, 0.35);
+  --accent-blue: #16a34a;
+  --accent-blue-glow: rgba(22, 163, 74, 0.35);
 
   --border-subtle: rgba(148, 163, 184, 0.1);
   --border-glass: rgba(99, 130, 255, 0.15);
@@ -53,10 +53,10 @@
   --text-primary: #0f172a;
   --text-secondary: #334155;
   --text-muted: #64748b;
-  --text-accent: #4f46e5;
+  --text-accent: #16a34a;
 
-  --accent-blue: #4f46e5;
-  --accent-blue-glow: rgba(79, 70, 229, 0.18);
+  --accent-blue: #15803d;
+  --accent-blue-glow: rgba(22, 163, 74, 0.18);
 
   --border-subtle: rgba(100, 116, 139, 0.2);
   --border-glass: rgba(99, 130, 255, 0.22);
@@ -244,7 +244,7 @@ body {
 .btn-primary {
   width: 100%;
   padding: 14px 24px;
-  background: #6366f1;
+  background: #16a34a;
   color: white;
   font-weight: 700;
   font-size: 0.95rem;
@@ -257,7 +257,7 @@ body {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #5558e6;
+  background: #15803d;
   box-shadow: 0 4px 20px var(--accent-blue-glow);
   transform: translateY(-1px);
 }

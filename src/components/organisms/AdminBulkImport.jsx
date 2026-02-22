@@ -140,7 +140,7 @@ export const AdminBulkImport = () => {
   return (
     <div className="glass-card p-6 animate-fade-in-up">
       <div className="flex items-center gap-2 mb-4">
-        <FileSpreadsheet className="w-5 h-5 text-indigo-400" />
+        <FileSpreadsheet className="w-5 h-5 text-green-400" />
         <h2 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>Bulk Import</h2>
       </div>
 
@@ -152,7 +152,7 @@ export const AdminBulkImport = () => {
             onClick={() => { setActiveTab(tab.id); resetState(); }}
             className={cn(
               "flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-bold transition-all",
-              activeTab === tab.id ? "bg-indigo-500 text-white shadow-sm" : ""
+              activeTab === tab.id ? "bg-green-500 text-white shadow-sm" : ""
             )}
             style={activeTab !== tab.id ? { color: 'var(--text-muted)' } : {}}
           >
@@ -163,7 +163,7 @@ export const AdminBulkImport = () => {
       </div>
 
       {/* the file picker area */}
-      <div className="border-2 border-dashed rounded-xl p-5 text-center hover:border-indigo-500/20 transition-all relative cursor-pointer" style={{ borderColor: 'var(--border-glass)', background: 'var(--bg-input)' }}>
+      <div className="border-2 border-dashed rounded-xl p-5 text-center hover:border-green-500/20 transition-all relative cursor-pointer" style={{ borderColor: 'var(--border-glass)', background: 'var(--bg-input)' }}>
         <input type="file" accept=".csv" onChange={handleFileUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" key={activeTab} />
         <UploadCloud className="w-7 h-7 mx-auto mb-2" style={{ color: 'var(--text-muted)' }} />
         <p className="font-medium text-sm" style={{ color: 'var(--text-secondary)' }}>
@@ -218,7 +218,7 @@ export const AdminBulkImport = () => {
         <div className="mt-1">
           {isProcessing && (
             <div className="w-full rounded-full h-1.5 mb-3 overflow-hidden" style={{ background: 'var(--bg-secondary)' }}>
-              <div className="bg-indigo-500 h-1.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
+              <div className="bg-green-500 h-1.5 rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
             </div>
           )}
           <button onClick={handleCommit} disabled={isProcessing} className="btn-primary !py-2.5 text-sm">

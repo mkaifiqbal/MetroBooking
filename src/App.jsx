@@ -42,10 +42,10 @@ const PassengerView = () => {
               {!bookingConfirmed && (
                 <button
                   onClick={resetBooking}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 border hover:border-indigo-500/30 hover:bg-indigo-500/5"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 border hover:border-green-500/30 hover:bg-green-500/5"
                   style={{ background: 'var(--bg-card)', color: 'var(--text-secondary)', borderColor: 'var(--border-glass)' }}
                 >
-                  <Search className="w-4 h-4 text-indigo-400" />
+                  <Search className="w-4 h-4 text-green-400" />
                   Plan New Journey
                 </button>
               )}
@@ -80,8 +80,8 @@ const AdminView = () => {
       <div className="mb-3 sm:mb-6">
         {/* Mobile: slim header */}
         <div className="flex items-center gap-2 mb-3 md:mb-4">
-          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-indigo-500/15 flex items-center justify-center border border-indigo-500/20 shrink-0">
-            <ShieldHalf className="w-4 h-4 md:w-5 md:h-5 text-indigo-400" />
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-green-500/15 flex items-center justify-center border border-green-500/20 shrink-0">
+            <ShieldHalf className="w-4 h-4 md:w-5 md:h-5 text-green-400" />
           </div>
           <div className="flex-1 min-w-0">
             <h1 className="text-base md:text-xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>Admin Panel</h1>
@@ -102,7 +102,7 @@ const AdminView = () => {
               onClick={() => setActiveTab(tab.id)}
               className={cn(
                 "flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold text-sm transition-all duration-200",
-                activeTab === tab.id ? "bg-indigo-500 text-white shadow-lg shadow-indigo-500/25" : ""
+                activeTab === tab.id ? "bg-green-500 text-white shadow-lg shadow-green-500/25" : ""
               )}
               style={activeTab !== tab.id ? { color: 'var(--text-secondary)' } : {}}
             >
@@ -132,11 +132,11 @@ const AdminView = () => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className="flex-1 flex flex-col items-center gap-0.5 py-2.5 transition-all duration-200"
-              style={{ color: activeTab === tab.id ? '#6366f1' : 'var(--text-muted)' }}
+              style={{ color: activeTab === tab.id ? '#16a34a' : 'var(--text-muted)' }}
             >
-              <tab.icon className="w-5 h-5" style={activeTab === tab.id ? { filter: 'drop-shadow(0 0 6px rgba(99,102,241,0.4))' } : {}} />
+              <tab.icon className="w-5 h-5" style={activeTab === tab.id ? { filter: 'drop-shadow(0 0 6px rgba(22,163,74,0.4))' } : {}} />
               <span className="text-[9px] font-bold leading-none">{tab.label}</span>
-              {activeTab === tab.id && <span className="w-4 h-0.5 rounded-full bg-indigo-500 mt-0.5" />}
+              {activeTab === tab.id && <span className="w-4 h-0.5 rounded-full bg-green-500 mt-0.5" />}
             </button>
           ))}
         </nav>
@@ -170,12 +170,12 @@ function AppContent() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo on the left */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <div className="w-9 h-9 rounded-xl bg-green-600 flex items-center justify-center shadow-lg shadow-green-500/20">
               <Train className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-base tracking-tight leading-none" style={{ color: 'var(--text-primary)' }}>MoveInSync</span>
-              <span className="text-[10px] font-semibold text-indigo-400 tracking-widest uppercase">Metro Service</span>
+              <span className="text-[10px] font-semibold text-green-600 tracking-widest uppercase">Metro Service</span>
             </div>
           </div>
 
@@ -185,18 +185,16 @@ function AppContent() {
             {isAdminPage ? (
               <Link
                 to="/"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-indigo-500 text-white shadow-lg shadow-indigo-500/25"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-green-500 text-white shadow-lg shadow-green-500/25"
               >
-                <Map className="w-4 h-4" />
-                <span className="hidden sm:inline">Home</span>
+                <span>Home</span>
               </Link>
             ) : (
               <Link
                 to="/admin"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-indigo-500 text-white shadow-lg shadow-indigo-500/25"
+                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-green-500 text-white shadow-lg shadow-green-500/25"
               >
-                <ShieldHalf className="w-4 h-4" />
-                <span className="hidden sm:inline">Admin</span>
+                <span >Admin</span>
               </Link>
             )}
 
@@ -211,7 +209,7 @@ function AppContent() {
               }}
               aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             >
-              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-indigo-500" />}
+              {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-green-500" />}
             </button>
           </div>
         </div>

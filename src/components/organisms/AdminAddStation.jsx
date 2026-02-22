@@ -83,7 +83,7 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                             <div className="absolute top-3 left-3 z-10">
                                 <button
                                     onClick={() => setPickMode(!pickMode)}
-                                    className={cn("flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all border", pickMode ? "bg-indigo-500 text-white border-indigo-400 shadow-lg shadow-indigo-500/30" : "")}
+                                    className={cn("flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold transition-all border", pickMode ? "bg-green-500 text-white border-green-400 shadow-lg shadow-green-500/30" : "")}
                                     style={!pickMode ? { background: 'var(--bg-card)', borderColor: 'var(--border-glass)', color: 'var(--text-secondary)' } : {}}
                                 >
                                     <Crosshair className="w-3.5 h-3.5" />
@@ -93,7 +93,7 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
 
                             {/* shows a message when pick mode is on */}
                             {pickMode && (
-                                <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-indigo-500/90 text-white text-xs font-semibold animate-fade-in-up backdrop-blur-sm">
+                                <div className="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-green-500/90 text-white text-xs font-semibold animate-fade-in-up backdrop-blur-sm">
                                     <MousePointer2 className="w-3.5 h-3.5" />
                                     Click anywhere on the map to place the station
                                 </div>
@@ -108,7 +108,7 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                                             <line x1="0" y1="0" x2="100" y2="0" stroke="var(--map-grid-line)" strokeWidth="0.5" />
                                         </pattern>
                                         <filter id="as-glow"><feGaussianBlur stdDeviation="4" result="b" /><feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-                                        <radialGradient id="as-rg" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#6366f1" stopOpacity="0.3" /><stop offset="100%" stopColor="#6366f1" stopOpacity="0" /></radialGradient>
+                                        <radialGradient id="as-rg" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#16a34a" stopOpacity="0.3" /><stop offset="100%" stopColor="#16a34a" stopOpacity="0" /></radialGradient>
                                     </defs>
                                     <rect width="1000" height="750" fill="url(#as-grid)" />
                                     <rect width="1000" height="750" fill="url(#as-grid-lines)" />
@@ -144,8 +144,8 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                                             <line x1={px + 8} y1={py} x2={px + 18} y2={py} stroke="#818cf8" strokeWidth={1} opacity={0.5} />
                                             <line x1={px} y1={py - 18} x2={px} y2={py - 8} stroke="#818cf8" strokeWidth={1} opacity={0.5} />
                                             <line x1={px} y1={py + 8} x2={px} y2={py + 18} stroke="#818cf8" strokeWidth={1} opacity={0.5} />
-                                            <circle cx={px} cy={py} r={7} fill="#6366f1" stroke="white" strokeWidth={2.5} />
-                                            <rect x={px - 35} y={py - 28} width={70} height={15} rx={4} fill="rgba(99,102,241,0.9)" />
+                                            <circle cx={px} cy={py} r={7} fill="#16a34a" stroke="white" strokeWidth={2.5} />
+                                            <rect x={px - 35} y={py - 28} width={70} height={15} rx={4} fill="rgba(22,163,74,0.9)" />
                                             <text x={px} y={py - 18} textAnchor="middle" style={{ fontSize: '8px', fill: 'white', fontWeight: 700, fontFamily: 'Inter' }}>New Station</text>
                                         </g>
                                     )}
@@ -196,8 +196,8 @@ export const AdminAddStation = () => {
         <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
             <form onSubmit={handleSubmit} className="glass-card p-4 sm:p-6 animate-fade-in-up">
                 <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-5 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-indigo-500/15 flex items-center justify-center border border-indigo-500/20 shrink-0">
-                        <Plus className="w-4 h-4 text-indigo-400" />
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-green-500/15 flex items-center justify-center border border-green-500/20 shrink-0">
+                        <Plus className="w-4 h-4 text-green-400" />
                     </div>
                     Add New Station
                 </h3>
@@ -233,7 +233,7 @@ export const AdminAddStation = () => {
                         <label className="block text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>Facilities</label>
                         <div className="flex flex-wrap gap-2 mb-2">
                             {PRESET_FACILITIES.map(f => (
-                                <button key={f} type="button" onClick={() => toggleFacility(f)} className={cn("text-xs px-3 py-1.5 rounded-lg font-semibold transition-all border", facilities.includes(f) ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" : "")} style={!facilities.includes(f) ? { color: 'var(--text-muted)', background: 'var(--bg-input)', borderColor: 'var(--border-subtle)' } : {}}>
+                                <button key={f} type="button" onClick={() => toggleFacility(f)} className={cn("text-xs px-3 py-1.5 rounded-lg font-semibold transition-all border", facilities.includes(f) ? "bg-green-500/20 text-green-300 border-green-500/30" : "")} style={!facilities.includes(f) ? { color: 'var(--text-muted)', background: 'var(--bg-input)', borderColor: 'var(--border-subtle)' } : {}}>
                                     {f.charAt(0).toUpperCase() + f.slice(1)}
                                 </button>
                             ))}

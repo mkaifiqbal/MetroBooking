@@ -7,7 +7,7 @@ import { cn } from '../molecules/StationSearch';
 export const AdminAddLine = () => {
     const { addLine, stations, lines } = useAdminStore();
     const [name, setName] = useState('');
-    const [color, setColor] = useState('#6366f1');
+    const [color, setColor] = useState('#16a34a');
     const [selectedStations, setSelectedStations] = useState([]);
     const [justAdded, setJustAdded] = useState(null);
     const [hoveredStation, setHoveredStation] = useState(null);
@@ -21,7 +21,7 @@ export const AdminAddLine = () => {
         addLine(name, color, selectedStations);
         setJustAdded({ name, color, count: selectedStations.length });
         setTimeout(() => setJustAdded(null), 3000);
-        setName(''); setColor('#6366f1'); setSelectedStations([]);
+        setName(''); setColor('#16a34a'); setSelectedStations([]);
     };
 
     // build the line path to show on the map
@@ -61,7 +61,7 @@ export const AdminAddLine = () => {
                                 const orderNum = isSelected ? selectedStations.indexOf(s.id) + 1 : null;
                                 return (
                                     <button key={s.id} type="button" onClick={() => toggleStation(s.id)}
-                                        className={cn("w-full text-left text-xs sm:text-sm px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all border flex items-center gap-2", isSelected ? "border-indigo-500/25" : "border-transparent")}
+                                        className={cn("w-full text-left text-xs sm:text-sm px-2 sm:px-3 py-2 sm:py-2.5 rounded-lg transition-all border flex items-center gap-2", isSelected ? "border-green-500/25" : "border-transparent")}
                                         style={isSelected ? { background: `${color}12`, color: color } : { color: 'var(--text-secondary)' }}
                                     >
                                         {isSelected ? (
@@ -98,7 +98,7 @@ export const AdminAddLine = () => {
                         <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Line Preview</span>
                         <div className="ml-auto flex items-center gap-2">
                             {name && <span className="text-xs font-bold px-2 py-1 rounded-md" style={{ color, background: `${color}15`, border: `1px solid ${color}30` }}>{name}</span>}
-                            {selectedStations.length > 0 && <span className="text-[10px] font-semibold px-2 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">{selectedStations.length} stops</span>}
+                            {selectedStations.length > 0 && <span className="text-[10px] font-semibold px-2 py-1 rounded-md bg-green-500/10 text-green-400 border border-green-500/20">{selectedStations.length} stops</span>}
                         </div>
                     </div>
 

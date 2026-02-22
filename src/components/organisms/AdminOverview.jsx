@@ -35,10 +35,10 @@ const StationEditPanel = ({ station, onClose }) => {
     };
 
     return (
-        <div className="rounded-xl p-3 sm:p-4 space-y-3 animate-fade-in-up" style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.15)' }}>
+        <div className="rounded-xl p-3 sm:p-4 space-y-3 animate-fade-in-up" style={{ background: 'rgba(22,163,74,0.08)', border: '1px solid rgba(22,163,74,0.15)' }}>
             <div className="flex items-center justify-between">
                 <h4 className="text-sm font-bold flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
-                    <Pencil className="w-3.5 h-3.5 text-indigo-400" /> Edit Station
+                    <Pencil className="w-3.5 h-3.5 text-green-400" /> Edit Station
                 </h4>
                 <button onClick={onClose} className="w-6 h-6 rounded flex items-center justify-center hover:bg-red-500/10 transition-all" style={{ color: 'var(--text-muted)' }}><X className="w-4 h-4" /></button>
             </div>
@@ -64,7 +64,7 @@ const StationEditPanel = ({ station, onClose }) => {
                 <div className="flex flex-wrap gap-1.5 mb-2">
                     {PRESET_FACILITIES.map(f => (
                         <button key={f} type="button" onClick={() => toggleFacility(f)}
-                            className={cn("text-[10px] px-2 py-1 rounded font-semibold transition-all border", facilities.includes(f) ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" : "")}
+                            className={cn("text-[10px] px-2 py-1 rounded font-semibold transition-all border", facilities.includes(f) ? "bg-green-500/20 text-green-300 border-green-500/30" : "")}
                             style={!facilities.includes(f) ? { color: 'var(--text-muted)', background: 'var(--bg-card)', borderColor: 'var(--border-subtle)' } : {}}>
                             {f.charAt(0).toUpperCase() + f.slice(1)}
                         </button>
@@ -89,7 +89,7 @@ const StationEditPanel = ({ station, onClose }) => {
             </div>
 
             <div className="flex gap-2 pt-1">
-                <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold bg-indigo-500 text-white hover:bg-indigo-600 transition-all shadow-lg shadow-indigo-500/20">
+                <button onClick={handleSave} className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-bold bg-green-500 text-white hover:bg-green-600 transition-all shadow-lg shadow-green-500/20">
                     <Save className="w-3.5 h-3.5" /> Save Changes
                 </button>
                 <button onClick={onClose} className="px-4 py-2 rounded-lg text-xs font-semibold border transition-all" style={{ color: 'var(--text-muted)', borderColor: 'var(--border-subtle)' }}>Cancel</button>
@@ -137,8 +137,8 @@ const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditin
             className={cn(
                 "flex items-center gap-2 sm:gap-3 px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-xl border group transition-all",
                 isDragging
-                    ? "shadow-2xl scale-[1.02] z-50 border-indigo-500/30"
-                    : "hover:border-indigo-500/20"
+                    ? "shadow-2xl scale-[1.02] z-50 border-green-500/30"
+                    : "hover:border-green-500/20"
             )}
             style={{
                 transform: CSS.Transform.toString(transform),
@@ -155,7 +155,7 @@ const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditin
                 {...listeners}
                 className={cn(
                     "shrink-0 cursor-grab active:cursor-grabbing touch-none p-0.5 rounded-md transition-all",
-                    isDragging ? "bg-indigo-500/15" : "hover:bg-indigo-500/10"
+                    isDragging ? "bg-green-500/15" : "hover:bg-green-500/10"
                 )}
                 style={{ color: 'var(--text-muted)' }}
                 aria-label="Drag to reorder"
@@ -191,7 +191,7 @@ const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditin
 
             {/* buttons that appear on hover (desktop) */}
             <div className="hidden md:flex items-center gap-1 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button onClick={() => onEdit(station.id)} className="text-[10px] font-semibold px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:bg-indigo-500/10 text-indigo-400">
+                <button onClick={() => onEdit(station.id)} className="text-[10px] font-semibold px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:bg-green-500/10 text-green-400">
                     <Pencil className="w-3 h-3" /> Edit
                 </button>
                 <button onClick={() => onRemove(station.id)} className="text-[10px] font-semibold px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:bg-red-500/10 text-red-400">
@@ -206,8 +206,8 @@ const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditin
                 </button>
                 {mobileMenuOpen && (
                     <div className="absolute top-full right-0 mt-1 w-38 rounded-xl overflow-hidden shadow-2xl animate-fade-in-up z-50" style={{ background: 'var(--bg-card)', border: '1px solid var(--border-glass)', boxShadow: '0 16px 32px rgba(0,0,0,0.25)' }}>
-                        <button onClick={() => { onEdit(station.id); setMobileMenuOpen(false); }} className="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold transition-all text-left hover:bg-indigo-500/5" style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
-                            <Pencil className="w-3 h-3 text-indigo-400" /> Edit Station
+                        <button onClick={() => { onEdit(station.id); setMobileMenuOpen(false); }} className="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold transition-all text-left hover:bg-green-500/5" style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border-subtle)' }}>
+                            <Pencil className="w-3 h-3 text-green-400" /> Edit Station
                         </button>
                         <button onClick={() => { onRemove(station.id); setMobileMenuOpen(false); }} className="w-full flex items-center gap-2 px-3 py-2.5 text-xs font-semibold transition-all text-left hover:bg-red-500/5 text-red-400">
                             <Trash2 className="w-3 h-3" /> Remove
@@ -278,7 +278,7 @@ const LineOverviewCard = ({ line, stations: allStations, interchanges, isExpande
                             <>
                                 <div className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: line.color }} />
                                 <span className="text-xs font-bold flex-1 truncate" style={{ color: 'var(--text-primary)' }}>{line.name}</span>
-                                <button onClick={(e) => { e.stopPropagation(); setEditingLine(true); setLineName(line.name); setLineColor(line.color); }} className="text-[10px] font-semibold px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">
+                                <button onClick={(e) => { e.stopPropagation(); setEditingLine(true); setLineName(line.name); setLineColor(line.color); }} className="text-[10px] font-semibold px-2.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 hover:bg-green-500/10 text-green-400 border border-green-500/15">
                                     <Pencil className="w-3 h-3" /> Edit Line
                                 </button>
                                 <button onClick={() => removeLine(line.id)} className="text-[10px] font-semibold px-2.5 py-1.5 rounded-lg text-red-400 hover:bg-red-500/10 transition-all border border-red-500/15 flex items-center gap-1.5">
@@ -346,7 +346,7 @@ export const AdminOverview = () => {
             {/* quick stats showing total stations and lines */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 mb-4 sm:mb-6">
                 {[
-                    { label: 'Stations', value: stations.length, icon: MapPin, color: '#6366f1' },
+                    { label: 'Stations', value: stations.length, icon: MapPin, color: '#16a34a' },
                     { label: 'Lines', value: lines.length, icon: TrainTrack, color: '#22d3ee' },
                     { label: 'Interchanges', value: interchanges.length, icon: LayoutGrid, color: '#a855f7' },
                     { label: 'Unassigned', value: orphanStations.length, icon: MapPin, color: orphanStations.length > 0 ? '#f59e0b' : '#34d399' },

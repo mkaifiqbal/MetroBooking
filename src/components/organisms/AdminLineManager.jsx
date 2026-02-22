@@ -12,7 +12,7 @@ import { cn } from '../molecules/StationSearch';
 const StationRow = ({ id, station, isInterchange, onRemove, lineId }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
   return (
-    <div ref={setNodeRef} style={{ transform: CSS.Transform.toString(transform), transition, borderColor: 'var(--border-subtle)', background: 'var(--bg-input)' }} className="flex items-center gap-2 p-2.5 mb-1.5 rounded-lg border group hover:border-indigo-500/30 transition-all">
+    <div ref={setNodeRef} style={{ transform: CSS.Transform.toString(transform), transition, borderColor: 'var(--border-subtle)', background: 'var(--bg-input)' }} className="flex items-center gap-2 p-2.5 mb-1.5 rounded-lg border group hover:border-green-500/30 transition-all">
       <button {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing" style={{ color: 'var(--text-muted)' }}><GripVertical className="w-4 h-4" /></button>
       <div className="flex-1 flex justify-between items-center min-w-0">
         <span className="font-medium text-sm truncate" style={{ color: 'var(--text-primary)' }}>{station?.name || 'Unknown'}</span>
@@ -83,7 +83,7 @@ const AddStationForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="glass-card p-5 animate-fade-in-up">
-      <h3 className="text-base font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}><Plus className="w-4 h-4 text-indigo-400" />Add New Station</h3>
+      <h3 className="text-base font-bold mb-4 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}><Plus className="w-4 h-4 text-green-400" />Add New Station</h3>
       <div className="space-y-3">
         <input value={name} onChange={e => setName(e.target.value)} placeholder="Station name" className="metro-input !pl-4" required />
         <div className="grid grid-cols-2 gap-3">
@@ -115,7 +115,7 @@ const AddStationForm = () => {
           <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>Facilities</p>
           <div className="flex flex-wrap gap-2 mb-2">
             {['accessibility', 'parking', 'exits', 'wifi', 'restroom', 'elevator'].map(f => (
-              <button key={f} type="button" onClick={() => toggleFacility(f)} className={cn("text-xs px-3 py-1.5 rounded-lg font-semibold transition-all border", facilities.includes(f) ? "bg-indigo-500/20 text-indigo-300 border-indigo-500/30" : "")} style={!facilities.includes(f) ? { color: 'var(--text-muted)', background: 'var(--bg-input)', borderColor: 'var(--border-subtle)' } : {}}>
+              <button key={f} type="button" onClick={() => toggleFacility(f)} className={cn("text-xs px-3 py-1.5 rounded-lg font-semibold transition-all border", facilities.includes(f) ? "bg-green-500/20 text-green-300 border-green-500/30" : "")} style={!facilities.includes(f) ? { color: 'var(--text-muted)', background: 'var(--bg-input)', borderColor: 'var(--border-subtle)' } : {}}>
                 {f.charAt(0).toUpperCase() + f.slice(1)}
               </button>
             ))}
@@ -141,7 +141,7 @@ const AddStationForm = () => {
 const AddLineForm = () => {
   const { addLine, stations } = useAdminStore();
   const [name, setName] = useState('');
-  const [color, setColor] = useState('#6366f1');
+  const [color, setColor] = useState('#16a34a');
   const [selectedStations, setSelectedStations] = useState([]);
 
   const toggleStation = (id) => setSelectedStations(prev => prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]);
@@ -150,7 +150,7 @@ const AddLineForm = () => {
     e.preventDefault();
     if (!name || selectedStations.length < 2) return;
     addLine(name, color, selectedStations);
-    setName(''); setColor('#6366f1'); setSelectedStations([]);
+    setName(''); setColor('#16a34a'); setSelectedStations([]);
   };
 
   return (
@@ -165,8 +165,8 @@ const AddLineForm = () => {
           <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>Select Stations (min 2)</p>
           <div className="max-h-40 overflow-y-auto space-y-1 pr-1">
             {stations.map(s => (
-              <button key={s.id} type="button" onClick={() => toggleStation(s.id)} className={cn("w-full text-left text-sm px-3 py-2 rounded-lg transition-all border", selectedStations.includes(s.id) ? "bg-indigo-500/15 text-indigo-300 border-indigo-500/25" : "border-transparent")} style={!selectedStations.includes(s.id) ? { color: 'var(--text-secondary)' } : {}}>
-                {selectedStations.includes(s.id) && <span className="inline-block w-2 h-2 rounded-full bg-indigo-400 mr-2" />}
+              <button key={s.id} type="button" onClick={() => toggleStation(s.id)} className={cn("w-full text-left text-sm px-3 py-2 rounded-lg transition-all border", selectedStations.includes(s.id) ? "bg-green-500/15 text-green-300 border-green-500/25" : "border-transparent")} style={!selectedStations.includes(s.id) ? { color: 'var(--text-secondary)' } : {}}>
+                {selectedStations.includes(s.id) && <span className="inline-block w-2 h-2 rounded-full bg-green-400 mr-2" />}
                 {s.name}
               </button>
             ))}
@@ -198,8 +198,8 @@ export const AdminLineManager = () => {
   return (
     <div>
       <div className="mb-6 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-indigo-500/15 flex items-center justify-center border border-indigo-500/20">
-          <TrainTrack className="w-5 h-5 text-indigo-400" />
+        <div className="w-10 h-10 rounded-xl bg-green-500/15 flex items-center justify-center border border-green-500/20">
+          <TrainTrack className="w-5 h-5 text-green-400" />
         </div>
         <div>
           <h2 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>Network Management</h2>

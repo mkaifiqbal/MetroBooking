@@ -5,7 +5,7 @@ function getInitialTheme() {
         const saved = localStorage.getItem('metro_theme');
         if (saved === 'light' || saved === 'dark') return saved;
     } catch { /* ignore */ }
-    return 'dark';
+    return 'light';
 }
 
 export const useThemeStore = create((set) => ({

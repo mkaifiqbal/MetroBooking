@@ -62,8 +62,8 @@ export const NetworkMap = () => {
   return (
     <div className="relative w-full h-[280px] lg:h-[600px] rounded-2xl overflow-hidden glass-card metro-map-bg">
       <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
-        <div className="w-8 h-8 rounded-lg bg-indigo-500/15 flex items-center justify-center border border-indigo-500/20">
-          <MapPin className="w-4 h-4 text-indigo-400" />
+        <div className="w-8 h-8 rounded-lg bg-green-500/15 flex items-center justify-center border border-green-500/20">
+          <MapPin className="w-4 h-4 text-green-400" />
         </div>
         <span className="text-sm font-bold" style={{ color: 'var(--text-primary)', opacity: 0.8 }}>Network Map</span>
       </div>
@@ -76,7 +76,7 @@ export const NetworkMap = () => {
           style={{ background: 'var(--bg-card)', borderColor: 'var(--border-glass)', color: 'var(--text-secondary)' }}
         >
           <div className="w-3.5 h-3.5 flex items-center justify-center">
-            <Dot className="text-indigo-400 scale-250" />
+            <Dot className="text-green-400 scale-250" />
           </div>
 
           Lines ({lines.length})
@@ -152,7 +152,7 @@ export const NetworkMap = () => {
                 {currentRoute && currentRoute.segments.map((seg, segIndex) => {
                   const segStations = seg.stations.map(stId => stations.find(s => s.id === stId)).filter(Boolean);
                   const segLine = lines.find(l => l.id === seg.lineId);
-                  const segColor = segLine?.color || '#6366f1';
+                  const segColor = segLine?.color || '#16a34a';
 
                   // Draw highlighted path for this segment
                   const points = segStations.map(st => `${st.coordinates.x},${st.coordinates.y}`).join(' ');
@@ -249,7 +249,7 @@ export const NetworkMap = () => {
             )}
             <div className="flex gap-2">
               <button onClick={() => { setSource(selectedStation); setSelectedStation(null); }} className="flex-1 py-2.5 px-3 rounded-xl text-sm font-semibold transition-all border" style={{ background: 'var(--bg-input)', color: 'var(--text-secondary)', borderColor: 'var(--border-glass)' }}>Book From Here</button>
-              <button onClick={() => { setDestination(selectedStation); setSelectedStation(null); }} className="flex-1 py-2.5 px-3 rounded-xl text-sm font-semibold bg-indigo-500 text-white hover:shadow-lg hover:shadow-indigo-500/25 transition-all">Book To Here</button>
+              <button onClick={() => { setDestination(selectedStation); setSelectedStation(null); }} className="flex-1 py-2.5 px-3 rounded-xl text-sm font-semibold bg-green-500 text-white hover:shadow-lg hover:shadow-green-500/25 transition-all">Book To Here</button>
             </div>
           </div>
         )

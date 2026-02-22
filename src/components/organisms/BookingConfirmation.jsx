@@ -27,10 +27,10 @@ export const BookingConfirmation = () => {
     return (
       <div className="glass-card p-8 flex flex-col items-center justify-center min-h-[350px] animate-fade-in-up">
         <div className="relative">
-          <div className="w-16 h-16 rounded-full border-2 border-indigo-500/30 flex items-center justify-center">
-            <Loader2 className="w-8 h-8 text-indigo-400 animate-spin" />
+          <div className="w-16 h-16 rounded-full border-2 border-green-500/30 flex items-center justify-center">
+            <Loader2 className="w-8 h-8 text-green-400 animate-spin" />
           </div>
-          <div className="absolute inset-0 rounded-full animate-ping bg-indigo-500/10" />
+          <div className="absolute inset-0 rounded-full animate-ping bg-green-500/10" />
         </div>
         <h3 className="text-lg font-bold mt-6" style={{ color: 'var(--text-primary)' }}>Confirming Booking...</h3>
         <p className="text-sm text-center mt-2 max-w-xs" style={{ color: 'var(--text-muted)' }}>
@@ -56,7 +56,7 @@ export const BookingConfirmation = () => {
         </div>
         <h2 className="text-xl font-extrabold" style={{ color: 'var(--text-primary)' }}>Booking Confirmed!</h2>
         <p className="text-sm mt-1" style={{ color: 'var(--text-secondary)' }}>
-          Ref: <span className="font-mono font-bold text-indigo-400">{ticketData.pnr}</span>
+          Ref: <span className="font-mono font-bold text-green-400">{ticketData.pnr}</span>
         </p>
       </div>
 
@@ -64,7 +64,7 @@ export const BookingConfirmation = () => {
       <div className="rounded-xl p-4 mb-6 space-y-3" style={{ background: 'var(--bg-input)', border: '1px solid var(--border-subtle)' }}>
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-muted)' }}>
-            <MapPin className="w-3.5 h-3.5 text-indigo-400" />
+            <MapPin className="w-3.5 h-3.5 text-green-400" />
             From
           </div>
           <span className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{sourceStation?.name}</span>
@@ -115,7 +115,7 @@ export const BookingConfirmation = () => {
       <div className="flex gap-3">
         <button
           onClick={handleDownloadTicket}
-          className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 hover:bg-indigo-500/20 hover:border-indigo-500/30"
+          className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm transition-all duration-200 bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20 hover:border-green-500/30"
         >
           <Download className="w-4 h-4" />
           Download
@@ -124,7 +124,7 @@ export const BookingConfirmation = () => {
       </div>
       <button
         onClick={resetBooking}
-        className="w-full mt-3 flex items-center justify-center gap-2 hover:text-indigo-400 py-2.5 transition-colors text-sm font-medium"
+        className="w-full mt-3 flex items-center justify-center gap-2 hover:text-green-400 py-2.5 transition-colors text-sm font-medium"
         style={{ color: 'var(--text-muted)' }}
       >
         <RefreshCcw className="w-3.5 h-3.5" />

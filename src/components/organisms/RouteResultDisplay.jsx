@@ -35,7 +35,7 @@ export const RouteResultDisplay = () => {
         </div>
         <div className="flex gap-4">
           <div className="flex items-center gap-1.5 text-sm" style={{ color: 'var(--text-secondary)' }}>
-            <MapPin className="w-3.5 h-3.5 text-indigo-400" />
+            <MapPin className="w-3.5 h-3.5 text-green-400" />
             <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>{currentRoute.totalStops}</span> stops
           </div>
           <div className="flex items-center gap-1.5 text-sm" style={{ color: 'var(--text-secondary)' }}>

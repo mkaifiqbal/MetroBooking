@@ -25,7 +25,7 @@ export const CompatibilityMatrix = () => {
   return (
     <div className="glass-card p-6 animate-fade-in-up overflow-x-auto" style={{ animationDelay: '0.1s' }}>
       <div className="flex items-center gap-2 mb-5">
-        <Settings2 className="w-5 h-5 text-indigo-400" />
+        <Settings2 className="w-5 h-5 text-green-400" />
         <h2 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>Compatibility Matrix</h2>
       </div>
 

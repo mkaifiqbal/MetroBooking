@@ -111,7 +111,7 @@ const AutocompleteInput = ({ label, value, onChange, placeholder, id, icon: Icon
                 aria-selected={activeIndex === index}
                 className={cn(
                   "cursor-pointer py-3 px-4 flex items-center justify-between transition-all duration-150 last:border-0",
-                  activeIndex === index ? "bg-indigo-500/15" : ""
+                  activeIndex === index ? "bg-green-500/15" : ""
                 )}
                 onClick={() => handleSelect(station)}
               >
@@ -153,7 +153,7 @@ export const JourneyPlanner = () => {
   return (
     <div className="glass-card p-6 animate-fade-in-up">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center">
           <Search className="w-5 h-5 text-white" />
         </div>
         <div>
@@ -175,11 +175,11 @@ export const JourneyPlanner = () => {
         <div className="flex justify-center -my-1 relative z-10">
           <button
             onClick={handleSwap}
-            className="w-10 h-10 rounded-full border hover:border-indigo-500/50 flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:shadow-indigo-500/10"
+            className="w-10 h-10 rounded-full border hover:border-green-500/50 flex items-center justify-center transition-all duration-200 hover:shadow-lg hover:shadow-green-500/10"
             aria-label="Swap source and destination"
             style={{ background: 'var(--bg-card)', borderColor: 'var(--border-glass)', transform: swapAnim ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}
           >
-            <ArrowUpDown className="h-4 w-4 text-indigo-400" />
+            <ArrowUpDown className="h-4 w-4 text-green-400" />
           </button>
         </div>
 
@@ -222,7 +222,7 @@ export const JourneyPlanner = () => {
                 className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:opacity-80 transition-all duration-150 text-left group border"
                 style={{ background: 'var(--bg-input)', borderColor: 'var(--border-subtle)' }}
               >
-                <Clock className="w-3.5 h-3.5 group-hover:text-indigo-400 transition-colors shrink-0" style={{ color: 'var(--text-muted)' }} />
+                <Clock className="w-3.5 h-3.5 group-hover:text-green-400 transition-colors shrink-0" style={{ color: 'var(--text-muted)' }} />
                 <div className="flex-1 min-w-0">
                   <span className="text-sm truncate block" style={{ color: 'var(--text-primary)' }}>
                     {search.source.name} <span style={{ color: 'var(--text-muted)' }}>→</span> {search.destination.name}
