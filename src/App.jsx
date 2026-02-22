@@ -175,7 +175,7 @@ function AppContent() {
             </div>
           </div>
 
-          
+
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={toggleTheme}
@@ -230,7 +230,7 @@ function AppContent() {
               )
             )}
 
-            
+
           </div>
         </div>
       </header>
@@ -239,7 +239,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<PassengerView />} />
           <Route path="/login" element={isLoggedIn ? <Navigate to="/admin" replace /> : <LoginPage />} />
-          <Route path="/admin" element={isLoggedIn ? <AdminView /> : <Navigate to="/login" replace />} />
+          <Route path="/admin" element={isLoggedIn ? <AdminView /> : <LoginPage />} />
         </Routes>
       </main>
 
