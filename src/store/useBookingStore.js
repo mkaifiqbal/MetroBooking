@@ -56,7 +56,6 @@ function buildRouteResult(path, stations, lines) {
     const prevStationId = path[i - 1].stationId;
 
     if (!currentSegment || currentSegment.lineId !== lineId) {
-      // we changed lines so we start a new segment
       if (currentSegment) {
         segments.push(currentSegment);
       }
@@ -66,7 +65,7 @@ function buildRouteResult(path, stations, lines) {
         lineName: line?.name || 'Unknown',
         color: line?.color || '#888',
         stations: [prevStationId, stationId],
-        duration: 3 // 3 min per stop
+        duration: 5 
       };
     } else {
       currentSegment.stations.push(stationId);
@@ -78,8 +77,8 @@ function buildRouteResult(path, stations, lines) {
 
   const totalStops = path.length - 1;
   const transfers = segments.length - 1;
-  const totalDuration = segments.reduce((sum, s) => sum + s.duration, 0) + transfers * 2; // +2min per transfer
-  const fare = 10 + totalStops * 5; // Base fare + per stop
+  const totalDuration = segments.reduce((sum, s) => sum + s.duration, 0) + transfers * 3; 
+  const fare = 10 + totalStops * 5; // 
 
   return { segments, totalStops, totalDuration, transfers, fare };
 }
@@ -101,7 +100,6 @@ function saveRecentSearches(searches) {
 }
 
 export const useBookingStore = create((set, get) => ({
-  // we get stations and lines from the admin store so everything stays in sync
   get stations() { return useAdminStore.getState().stations; },
   get lines() { return useAdminStore.getState().lines; },
 
@@ -126,7 +124,6 @@ export const useBookingStore = create((set, get) => ({
 
   searchRoutes: () => {
     const { sourceStation, destinationStation, recentSearches } = get();
-    // grab the latest stations and lines from admin store
     const { stations, lines } = useAdminStore.getState();
     if (!sourceStation || !destinationStation) return;
 

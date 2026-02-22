@@ -27,7 +27,7 @@ export const AdminBulkImport = () => {
     setProgress(0);
   };
 
-  /* ── Station CSV validation ─────────────────────── */
+  /*Station CSV validation  */
   const validateStationData = (data) => {
     const newErrors = [];
     const validData = [];
@@ -52,13 +52,12 @@ export const AdminBulkImport = () => {
     setLinePreview([]);
   };
 
-  /* ── Line CSV validation ────────────────────────── */
+  /*Line CSV validation */
   const validateLineData = (data) => {
     const newErrors = [];
     const validData = [];
     const existingLineIds = new Set(lines.map(l => l.id));
     const allStationIds = new Set(stations.map(s => s.id));
-    // include any stations from preview too in case user is importing both at once
     stationPreview.forEach(s => allStationIds.add(s.id));
     const importIds = new Set();
 
@@ -97,7 +96,7 @@ export const AdminBulkImport = () => {
     setLinePreview(validData);
   };
 
-  /* ── File upload handler ────────────────────────── */
+  /*File upload handler */
   const handleFileUpload = (e) => {
     const uploadedFile = e.target.files[0];
     if (!uploadedFile) return;
@@ -116,7 +115,6 @@ export const AdminBulkImport = () => {
     });
   };
 
-  /* ── Commit import ──────────────────────────────── */
   const handleCommit = () => {
     setIsProcessing(true);
     let currentProgress = 0;
@@ -144,7 +142,6 @@ export const AdminBulkImport = () => {
         <h2 className="text-base font-bold" style={{ color: 'var(--text-primary)' }}>Bulk Import</h2>
       </div>
 
-      {/* switch between stations and lines import */}
       <div className="flex gap-1 p-1 rounded-lg border mb-4" style={{ background: 'var(--bg-secondary)', borderColor: 'var(--border-subtle)' }}>
         {TABS.map(tab => (
           <button
@@ -162,7 +159,6 @@ export const AdminBulkImport = () => {
         ))}
       </div>
 
-      {/* the file picker area */}
       <div className="border-2 border-dashed rounded-xl p-5 text-center hover:border-green-500/20 transition-all relative cursor-pointer" style={{ borderColor: 'var(--border-glass)', background: 'var(--bg-input)' }}>
         <input type="file" accept=".csv" onChange={handleFileUpload} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" key={activeTab} />
         <UploadCloud className="w-7 h-7 mx-auto mb-2" style={{ color: 'var(--text-muted)' }} />

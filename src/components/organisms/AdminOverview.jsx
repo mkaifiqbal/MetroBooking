@@ -8,7 +8,7 @@ import { CSS } from '@dnd-kit/utilities';
 
 const PRESET_FACILITIES = ['accessibility', 'parking', 'exits', 'wifi', 'restroom', 'elevator'];
 
-/* ── this panel lets you edit a stations details ──────────── */
+/* edit stations details */
 const StationEditPanel = ({ station, onClose }) => {
     const [name, setName] = useState(station.name);
     const [cx, setCx] = useState(String(station.coordinates.x));
@@ -98,7 +98,7 @@ const StationEditPanel = ({ station, onClose }) => {
     );
 };
 
-/* ── a single station row that you can drag to reorder ─────── */
+/* drag station to reorder */
 const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditing, onEdit, onRemove, totalStations }) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const menuRef = useRef(null);
@@ -149,7 +149,6 @@ const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditin
             }}
             {...attributes}
         >
-            {/* the 6 dots you grab to drag */}
             <button
                 ref={setActivatorNodeRef}
                 {...listeners}
@@ -219,7 +218,7 @@ const SortableStationRow = ({ station, index, lineColor, isInterchange, isEditin
     );
 };
 
-/* ── one metro line card with its stations ───────────────── */
+/* one metro line card with its stations  */
 const LineOverviewCard = ({ line, stations: allStations, interchanges, isExpanded, onToggle }) => {
     const { removeLine, removeStationFromLine, reorderStation } = useAdminStore();
     const [editingStation, setEditingStation] = useState(null);
@@ -324,7 +323,7 @@ const LineOverviewCard = ({ line, stations: allStations, interchanges, isExpande
     );
 };
 
-/* ── the main overview page showing all lines and stations ── */
+/* the main overview page showing all lines and stations */
 export const AdminOverview = () => {
     const { stations, lines } = useAdminStore();
     const [expandedLine, setExpandedLine] = useState(null);

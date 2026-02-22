@@ -30,7 +30,7 @@ export const AdminAddLine = () => {
 
     return (
         <div className="grid lg:grid-cols-2 gap-4 sm:gap-6">
-            {/* the form to fill in line name, color and pick stations */}
+            {/* add new line */}
             <form onSubmit={handleSubmit} className="glass-card p-4 sm:p-6 animate-fade-in-up">
                 <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-5 flex items-center gap-2" style={{ color: 'var(--text-primary)' }}>
                     <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-cyan-500/15 flex items-center justify-center border border-cyan-500/20 shrink-0">
@@ -92,7 +92,7 @@ export const AdminAddLine = () => {
             {/* map showing how the new line will look */}
             <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                 <div className="rounded-2xl overflow-hidden border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-glass)', boxShadow: 'var(--shadow-card)' }}>
-                    {/* title and icon */}
+                    
                     <div className="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-3 border-b" style={{ borderColor: 'var(--border-subtle)' }}>
                         <Eye className="w-4 h-4" style={{ color: 'var(--text-accent)' }} />
                         <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Line Preview</span>
@@ -102,12 +102,10 @@ export const AdminAddLine = () => {
                         </div>
                     </div>
 
-                    {/* the interactive map */}
                     <div className="relative" style={{ height: 'clamp(260px, 50vw, 380px)' }}>
                         <TransformWrapper initialScale={1} minScale={0.5} maxScale={5} centerOnInit disabled={selectMode} panning={{ disabled: selectMode }}>
                             {({ zoomIn, zoomOut, resetTransform }) => (
                                 <>
-                                    {/* zoom in/out and reset buttons */}
                                     <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
                                         {[
                                             { fn: zoomIn, icon: ZoomIn, label: 'Zoom in' },
@@ -173,7 +171,6 @@ export const AdminAddLine = () => {
                                                 </g>
                                             )}
 
-                                            {/* station dots - click them in select mode to add to line */}
                                             {stations.map(st => {
                                                 const isSelected = selectedStations.includes(st.id);
                                                 const orderNum = isSelected ? selectedStations.indexOf(st.id) + 1 : null;
@@ -188,14 +185,12 @@ export const AdminAddLine = () => {
                                                         onMouseEnter={() => setHoveredStation(st.id)}
                                                         onMouseLeave={() => setHoveredStation(null)}
                                                     >
-                                                        {/* ring that appears when you hover */}
                                                         {isHovered && !isSelected && selectMode && (
                                                             <circle cx={st.coordinates.x} cy={st.coordinates.y} r={14} fill="none" stroke={color} strokeWidth={1} opacity={0.4} strokeDasharray="3 2">
                                                                 <animate attributeName="r" values="10;16;10" dur="1.5s" repeatCount="indefinite" />
                                                             </circle>
                                                         )}
 
-                                                        {/* glowing ring on selected stations */}
                                                         {isSelected && (
                                                             <circle cx={st.coordinates.x} cy={st.coordinates.y} r={16} fill="none" stroke={color} strokeWidth={1.5} opacity={0.3}>
                                                                 <animate attributeName="r" values="11;18;11" dur="2s" repeatCount="indefinite" />
@@ -203,7 +198,6 @@ export const AdminAddLine = () => {
                                                             </circle>
                                                         )}
 
-                                                        {/* the station dot itself */}
                                                         <circle
                                                             cx={st.coordinates.x} cy={st.coordinates.y} r={r}
                                                             fill={isSelected ? color : (isHovered && selectMode ? 'var(--text-primary)' : 'var(--station-fill)')}

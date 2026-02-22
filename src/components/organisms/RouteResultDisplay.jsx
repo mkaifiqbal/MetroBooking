@@ -49,7 +49,6 @@ export const RouteResultDisplay = () => {
         </div>
       </div>
 
-      {/* shows each line segment as a nice timeline */}
       <div className="relative pl-6">
         {currentRoute.segments.map((segment, index) => {
           const isLastSegment = index === currentRoute.segments.length - 1;
@@ -59,7 +58,6 @@ export const RouteResultDisplay = () => {
           return (
             <div key={`${segment.lineId}-${index}`} className="relative mb-6 last:mb-0">
 
-              {/* the vertical colored bar connecting stations */}
               <div
                 className="absolute -left-[12px] top-3 w-[3px] rounded-full"
                 style={{

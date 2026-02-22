@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
-import { Train, ShieldHalf, Map, Ticket, Sun, Moon, MapPin, Palette, LayoutGrid, Search } from 'lucide-react';
+import { BrowserRouter, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import { Train, ShieldHalf, Map, Sun, Moon, MapPin, Palette, LayoutGrid, Search, LogIn, LogOut } from 'lucide-react';
 
 import { JourneyPlanner } from './components/molecules/StationSearch';
 import { RouteResultDisplay } from './components/organisms/RouteResultDisplay';
@@ -8,6 +8,8 @@ import { BookingConfirmation } from './components/organisms/BookingConfirmation'
 import { NetworkMap } from './components/organisms/NetworkMap';
 import { useBookingStore } from './store/useBookingStore';
 import { useThemeStore } from './store/useThemeStore';
+import { useAuthStore } from './store/useAuthStore';
+import { LoginPage } from './components/organisms/LoginPage';
 
 import { AdminAddStation } from './components/organisms/AdminAddStation';
 import { AdminAddLine } from './components/organisms/AdminAddLine';
@@ -31,7 +33,6 @@ const PassengerView = () => {
           <NetworkMap />
         </div>
 
-        {/* Left side - shows search form OR route results depending on state */}
         <div className="lg:col-span-5 space-y-5">
           {!hasRoute ? (
             <JourneyPlanner />
@@ -76,9 +77,7 @@ const AdminView = () => {
 
   return (
     <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-6 pb-20 md:pb-6">
-      {/* Admin Header — compact on mobile */}
       <div className="mb-3 sm:mb-6">
-        {/* Mobile: slim header */}
         <div className="flex items-center gap-2 mb-3 md:mb-4">
           <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-green-500/15 flex items-center justify-center border border-green-500/20 shrink-0">
             <ShieldHalf className="w-4 h-4 md:w-5 md:h-5 text-green-400" />
@@ -87,14 +86,12 @@ const AdminView = () => {
             <h1 className="text-base md:text-xl font-bold leading-tight" style={{ color: 'var(--text-primary)' }}>Admin Panel</h1>
             <p className="text-[10px] md:text-xs hidden sm:block" style={{ color: 'var(--text-muted)' }}>Manage your metro network</p>
           </div>
-          {/* Mobile active tab badge */}
           <div className="md:hidden flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold" style={{ background: 'var(--bg-input)', color: 'var(--text-accent)', border: '1px solid var(--border-glass)' }}>
             <activeTabData.icon className="w-3.5 h-3.5" />
             {activeTabData.label}
           </div>
         </div>
 
-        {/* Desktop: horizontal tab bar */}
         <nav className="hidden md:flex gap-1 p-1 rounded-xl border" style={{ background: 'var(--nav-bg)', borderColor: 'var(--nav-border)' }}>
           {ADMIN_TABS.map(tab => (
             <button
@@ -149,10 +146,11 @@ const AdminView = () => {
 // We need it separate so we can use useLocation() hook
 function AppContent() {
   const { theme, toggleTheme } = useThemeStore();
+  const { isLoggedIn, user, logout } = useAuthStore();
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith('/admin');
+  const isLoginPage = location.pathname === '/login';
 
-  // Set the theme on the html tag whenever it changes
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
@@ -160,7 +158,6 @@ function AppContent() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)', transition: 'background-color 0.3s ease, color 0.3s ease' }}>
 
-      {/* Top navigation bar - sticks to the top when scrolling */}
       <header className="sticky top-0 z-50" style={{
         background: 'var(--header-bg)',
         backdropFilter: 'blur(20px)',
@@ -168,7 +165,6 @@ function AppContent() {
         borderBottom: '1px solid var(--border-glass)'
       }}>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Logo on the left */}
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-green-600 flex items-center justify-center shadow-lg shadow-green-500/20">
               <Train className="w-5 h-5 text-white" />
@@ -179,26 +175,8 @@ function AppContent() {
             </div>
           </div>
 
-          {/* Right side: nav button + theme toggle */}
-          <div className="flex items-center gap-3">
-            {/* Only show the opposite page button */}
-            {isAdminPage ? (
-              <Link
-                to="/"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-green-500 text-white shadow-lg shadow-green-500/25"
-              >
-                <span>Home</span>
-              </Link>
-            ) : (
-              <Link
-                to="/admin"
-                className="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-green-500 text-white shadow-lg shadow-green-500/25"
-              >
-                <span >Admin</span>
-              </Link>
-            )}
-
-            {/* Dark/Light mode toggle button */}
+          
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={toggleTheme}
               className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 border"
@@ -211,15 +189,57 @@ function AppContent() {
             >
               {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-green-500" />}
             </button>
+            {(isAdminPage || isLoginPage) && (
+              <Link
+                to="/"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200"
+                style={{ color: 'var(--text-secondary)', background: 'var(--bg-card)', border: '1px solid var(--border-glass)' }}
+              >
+                <span>Home</span>
+              </Link>
+            )}
+
+            {isLoggedIn && user?.role === 'admin' ? (
+              <>
+                {!isAdminPage && (
+                  <Link
+                    to="/admin"
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-green-500 text-white shadow-lg shadow-green-500/25"
+                  >
+                    <span>Admin</span>
+                  </Link>
+                )}
+                <button
+                  onClick={() => { logout(); }}
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 border hover:bg-red-500/10"
+                  style={{ color: 'var(--text-secondary)', borderColor: 'var(--border-glass)' }}
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </>
+            ) : (
+              !isLoginPage && (
+                <Link
+                  to="/login"
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 bg-green-500 text-white shadow-lg shadow-green-500/25"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span className="hidden sm:inline">Login</span>
+                </Link>
+              )
+            )}
+
+            
           </div>
         </div>
       </header>
 
-      {/* Page content goes here */}
       <main>
         <Routes>
           <Route path="/" element={<PassengerView />} />
-          <Route path="/admin" element={<AdminView />} />
+          <Route path="/login" element={isLoggedIn ? <Navigate to="/admin" replace /> : <LoginPage />} />
+          <Route path="/admin" element={isLoggedIn ? <AdminView /> : <Navigate to="/login" replace />} />
         </Routes>
       </main>
 

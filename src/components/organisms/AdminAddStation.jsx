@@ -52,7 +52,6 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
 
     return (
         <div className="rounded-2xl overflow-hidden border" style={{ background: 'var(--bg-card)', borderColor: 'var(--border-glass)', boxShadow: 'var(--shadow-card)' }}>
-            {/* title and icon */}
             <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ borderColor: 'var(--border-subtle)' }}>
                 <MapPin className="w-4 h-4" style={{ color: 'var(--text-accent)' }} />
                 <span className="text-sm font-bold" style={{ color: 'var(--text-primary)' }}>Position Preview</span>
@@ -63,12 +62,11 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                 </div>
             </div>
 
-            {/* the interactive map preview */}
+            {/* map preview */}
             <div className="relative" style={{ height: 'clamp(260px, 50vw, 380px)' }}>
                 <TransformWrapper initialScale={1} minScale={0.5} maxScale={5} centerOnInit disabled={pickMode} panning={{ disabled: pickMode }}>
                     {({ zoomIn, zoomOut, resetTransform }) => (
                         <>
-                            {/* zoom in/out and reset buttons */}
                             <div className="absolute top-3 right-3 z-10 flex flex-col gap-1">
                                 {[
                                     { fn: zoomIn, icon: ZoomIn, label: 'Zoom in' },
@@ -79,7 +77,6 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                                 ))}
                             </div>
 
-                            {/* toggle to switch between looking and placing mode */}
                             <div className="absolute top-3 left-3 z-10">
                                 <button
                                     onClick={() => setPickMode(!pickMode)}
@@ -113,7 +110,6 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                                     <rect width="1000" height="750" fill="url(#as-grid)" />
                                     <rect width="1000" height="750" fill="url(#as-grid-lines)" />
 
-                                    {/* draws the metro lines on the preview */}
                                     {lines.map(line => {
                                         const pts = line.stations.map(id => stations.find(s => s.id === id)).filter(Boolean).map(s => `${s.coordinates.x},${s.coordinates.y}`).join(' ');
                                         return (
@@ -124,7 +120,6 @@ const StationPreviewMap = ({ x, y, onCoordsChange, stations, lines }) => {
                                         );
                                     })}
 
-                                    {/* shows all existing stations as dots */}
                                     {stations.map(st => (
                                         <g key={st.id}>
                                             <circle cx={st.coordinates.x} cy={st.coordinates.y} r={5} fill="var(--station-fill)" stroke="var(--text-muted)" strokeWidth={1.5} opacity={0.65} />
